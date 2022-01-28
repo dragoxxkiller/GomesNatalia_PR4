@@ -28,7 +28,7 @@ public class PlayerCTRL : MonoBehaviour
 
 
    
-    bool Correr = false;
+    //bool Correr = false;
     bool Straffing = false;
 
 
