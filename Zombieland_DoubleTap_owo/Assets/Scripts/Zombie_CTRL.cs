@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ZombieCTRL : MonoBehaviour
+public class Zombie_CTRL : MonoBehaviour
 {
     //Variables para el FSM
-    Vector3 goal; //Hacia donde se dirigirá
-    float speed; //Velocidad a la que se moverá
+    Vector3 goal; //Hacia donde se dirigirï¿½
+    float speed; //Velocidad a la que se moverï¿½
 
     //Necesito saber en todo momento mi distancia al objetivo
     float distance;
@@ -15,7 +15,7 @@ public class ZombieCTRL : MonoBehaviour
     bool detected;
 
     //Componente Nav Mesh Agent
-    NavMeshAgent agent;
+    UnityEngine.AI.NavMeshAgent agent;
 
     //Destinos posibles (el empty de la ronda y el jugador)
     [SerializeField] Transform emptyGoal, survivor;
@@ -28,14 +28,14 @@ public class ZombieCTRL : MonoBehaviour
     //AudioSource audioSource;
 
     //Variables para detectar al jugador
-    float visionRange = 10f; //10 metros de visión
-    float visionConeAngle = 60f; //60º de angulo de visión
+    float visionRange = 10f; //10 metros de visiï¿½n
+    float visionConeAngle = 60f; //60ï¿½ de angulo de visiï¿½n
 
     // Start is called before the first frame update
     void Start()
     {
 
-        agent = GetComponent<NavMeshAgent>();
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();
 
         //audioSource.GetComponent<AudioSource>();
@@ -49,20 +49,20 @@ public class ZombieCTRL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Función que permite detectar al jugador
+        //Funciï¿½n que permite detectar al jugador
         Detectar();
 
-        //Si me han detectado, cambio la animación
+        //Si me han detectado, cambio la animaciï¿½n
         if (detected)
         {
-            animator.SetBool("Atack", true);
+            animator.SetBool("Attack", true);
             goal = survivor.position;
             //audioSource.Play();
         }
         else
         {
             goal = emptyGoal.position;
-            animator.SetBool("Atack", false);
+            animator.SetBool("Attack", false);
         }
 
         distance = Vector3.Distance(transform.position, goal);
@@ -87,13 +87,13 @@ public class ZombieCTRL : MonoBehaviour
             //Obtengo valores aleatorios para un nuevo Vector3
             float RandomX = Random.Range(-5f, 5f);
             float RandomZ = Random.Range(-5f, 5f);
-            //Creo un Vector3 relativo a mi posición
+            //Creo un Vector3 relativo a mi posiciï¿½n
             Vector3 randomPos = new Vector3(RandomX, 0, RandomZ);
             Vector3 destPos = transform.position + randomPos;
 
             yield return new WaitForSeconds(5f);
 
-            //Muevo el objetivo a la posición aleatoria
+            //Muevo el objetivo a la posiciï¿½n aleatoria
             emptyGoal.transform.position = destPos;
 
 
