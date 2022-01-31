@@ -18,8 +18,8 @@ public class Zombie_CTRL : MonoBehaviour
     UnityEngine.AI.NavMeshAgent agent;
 
 
-    [SerializeField] Transform emptyGoal, survivor;
-
+    [SerializeField] Transform emptyGoal;
+    [SerializeField] Transform survivor;
 
     Animator animator;
 
@@ -43,7 +43,7 @@ public class Zombie_CTRL : MonoBehaviour
 
         StartCoroutine("Ronda");
 
-
+        survivor = GameObject.Find("Survivor").transform;
     }
 
     // Update is called once per frame
